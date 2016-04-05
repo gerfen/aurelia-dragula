@@ -73,6 +73,7 @@ export class DragulaAndDrop {
       isContainer: this._isContainer.bind(this),
       moves: this._moves.bind(this),
       accepts: this._accepts.bind(this),
+      copy: this._copy.bind(this),
       invalid: this._invalid.bind(this)
     };
 
@@ -133,6 +134,15 @@ export class DragulaAndDrop {
       return this.globalOptions.accepts(item, target, source, sibling);
     }
   }
+  
+  _copy(item, target, source, sibling) {
+    if (typeof this.copy === 'function') {
+      return this.copy({ item: item, target: target, source: source, sibling: sibling });
+    }
+    else {
+      return this.globalOptions.copy(item, target, source, sibling);
+    }
+  }
 
   _invalid(item, handle) {
     if (typeof this.invalid === 'function') {
@@ -146,7 +156,7 @@ export class DragulaAndDrop {
   _setupOptions() {
     let result = {
       containers: this._getOption('containers'),
-      copy: this._getOption('copy'),
+      /*copy: this._getOption('copy'),*/
       copySortSource: this._getOption('copySortSource'),
       revertOnSpill: this._getOption('revertOnSpill'),
       removeOnSpill: this._getOption('removeOnSpill'),
@@ -736,7 +746,7 @@ export class Options {
     this.invalid = Options.invalidTarget;
     this.containers = [];
     this.isContainer = Options.never;
-    this.copy = false;
+    this.copy = Options.never;
     this.copySortSource = false;
     this.revertOnSpill = false;
     this.removeOnSpill = false;

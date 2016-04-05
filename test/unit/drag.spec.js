@@ -135,7 +135,8 @@ describe('drag', function() {
     let div = document.createElement('div');
     let item1 = document.createElement('div');
     let item2 = document.createElement('span');
-    let drake = createDragula([div], { copy: true });
+    //let drake = createDragula([div], { copy: true });
+    let drake = createDragula([div], { copy: Options.always });
     item2.innerHTML = '<em>the force is <strong>with this one</strong></em>';
     div.appendChild(item1);
     div.appendChild(item2);

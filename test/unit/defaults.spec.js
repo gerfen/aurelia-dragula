@@ -10,7 +10,8 @@ describe('drake defaults', () => {
     expect(typeof options.accepts).toBe('function');
     expect(typeof options.invalid).toBe('function');
     expect(typeof options.isContainer).toBe('function');
-    expect(options.copy).toBe(false);
+    //expect(options.copy).toBe(false);
+    expect(typeof options.copy).toBe('function');
     expect(options.revertOnSpill).toBe(false);
     expect(options.removeOnSpill).toBe(false);
     expect(options.direction).toBe('vertical');
@@ -25,7 +26,8 @@ describe('drake defaults', () => {
     expect(typeof dragula.options.accepts).toBe('function');
     expect(typeof dragula.options.invalid).toBe('function');
     expect(typeof dragula.options.isContainer).toBe('function');
-    expect(dragula.options.copy).toBe(false);
+    //expect(dragula.options.copy).toBe(false);
+    expect(typeof dragula.options.copy).toBe('function');
     expect(dragula.options.revertOnSpill).toBe(false);
     expect(dragula.options.removeOnSpill).toBe(false);
     expect(dragula.options.direction).toBe('vertical');
@@ -41,7 +43,8 @@ describe('drake defaults', () => {
     opposite.invalid = Options.always;
     opposite.containers = [div];
     opposite.isContainer = Options.always;
-    opposite.copy = true;
+    //opposite.copy = true;
+    opposite.copy = Options.never;
     opposite.copySortSource = true;
     opposite.revertOnSpill = true;
     opposite.removeOnSpill = true;
@@ -58,7 +61,8 @@ describe('drake defaults', () => {
     expect(dragula.options.invalid).toBe(Options.always);
     expect(dragula.options.containers).toEqual([div]);
     expect(dragula.options.isContainer).toBe(Options.always);
-    expect(dragula.options.copy).toBe(true);
+    //expect(dragula.options.copy).toBe(true);
+    expect(dragula.options.copy).toBe(Options.never);
     expect(dragula.options.copySortSource).toBe(true);
     expect(dragula.options.revertOnSpill).toBe(true);
     expect(dragula.options.removeOnSpill).toBe(true);

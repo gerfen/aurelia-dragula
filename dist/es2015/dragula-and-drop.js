@@ -21,6 +21,7 @@ export let DragulaAndDrop = (_dec = bindable({ name: 'moves', defaultBindingMode
       isContainer: this._isContainer.bind(this),
       moves: this._moves.bind(this),
       accepts: this._accepts.bind(this),
+      copy: this._copy.bind(this),
       invalid: this._invalid.bind(this)
     };
 
@@ -77,6 +78,14 @@ export let DragulaAndDrop = (_dec = bindable({ name: 'moves', defaultBindingMode
     }
   }
 
+  _copy(item, target, source, sibling) {
+    if (typeof this.copy === 'function') {
+      return this.copy({ item: item, target: target, source: source, sibling: sibling });
+    } else {
+      return this.globalOptions.copy(item, target, source, sibling);
+    }
+  }
+
   _invalid(item, handle) {
     if (typeof this.invalid === 'function') {
       return this.invalid({ item: item, handle: handle });
@@ -88,7 +97,7 @@ export let DragulaAndDrop = (_dec = bindable({ name: 'moves', defaultBindingMode
   _setupOptions() {
     let result = {
       containers: this._getOption('containers'),
-      copy: this._getOption('copy'),
+
       copySortSource: this._getOption('copySortSource'),
       revertOnSpill: this._getOption('revertOnSpill'),
       removeOnSpill: this._getOption('removeOnSpill'),

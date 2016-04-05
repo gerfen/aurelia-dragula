@@ -1,5 +1,6 @@
 import {raise} from './lib/events';
 import {createDragula} from './lib/create-dragula';
+import {Options} from '../../src/options';
 
 describe('events', function() {
 
@@ -106,7 +107,8 @@ describe('events', function() {
 
   it('.remove() emits "cancel" for copies', function() {
     let dragendCalled = false;
-    let drake = createDragula([this.div], { copy: true });
+    //let drake = createDragula([this.div], { copy: true });
+    let drake = createDragula([this.div], { copy: Options.always });
     let copiedItem;
     this.item.classList.add('test');
 
@@ -222,8 +224,8 @@ describe('events', function() {
   });
 
   it('mousedown emits "cloned" for copies', function() {
-    let drake = createDragula([this.div], { copy: true });
-
+    //let drake = createDragula([this.div], { copy: true });
+let drake = createDragula([this.div], { copy: Options.always });
     drake.on('cloned', (copy, original, type) => {
       if (type === 'copy') {
         expect(copy).not.toBe(this.item, 'copy is not a reference to item');

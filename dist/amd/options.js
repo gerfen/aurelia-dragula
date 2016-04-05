@@ -27,7 +27,7 @@ define(['exports'], function (exports) {
       this.invalid = Options.invalidTarget;
       this.containers = [];
       this.isContainer = Options.never;
-      this.copy = false;
+      this.copy = Options.never;
       this.copySortSource = false;
       this.revertOnSpill = false;
       this.removeOnSpill = false;

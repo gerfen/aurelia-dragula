@@ -42,6 +42,7 @@ System.register(['aurelia-templating', 'aurelia-binding', 'aurelia-dependency-in
             isContainer: this._isContainer.bind(this),
             moves: this._moves.bind(this),
             accepts: this._accepts.bind(this),
+            copy: this._copy.bind(this),
             invalid: this._invalid.bind(this)
           };
 
@@ -98,6 +99,14 @@ System.register(['aurelia-templating', 'aurelia-binding', 'aurelia-dependency-in
           }
         };
 
+        DragulaAndDrop.prototype._copy = function _copy(item, target, source, sibling) {
+          if (typeof this.copy === 'function') {
+            return this.copy({ item: item, target: target, source: source, sibling: sibling });
+          } else {
+            return this.globalOptions.copy(item, target, source, sibling);
+          }
+        };
+
         DragulaAndDrop.prototype._invalid = function _invalid(item, handle) {
           if (typeof this.invalid === 'function') {
             return this.invalid({ item: item, handle: handle });
@@ -109,7 +118,7 @@ System.register(['aurelia-templating', 'aurelia-binding', 'aurelia-dependency-in
         DragulaAndDrop.prototype._setupOptions = function _setupOptions() {
           var result = {
             containers: this._getOption('containers'),
-            copy: this._getOption('copy'),
+
             copySortSource: this._getOption('copySortSource'),
             revertOnSpill: this._getOption('revertOnSpill'),
             removeOnSpill: this._getOption('removeOnSpill'),

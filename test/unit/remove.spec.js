@@ -1,5 +1,6 @@
 import {raise} from './lib/events';
 import {createDragula} from './lib/create-dragula';
+import {Options} from '../../src/options';
 
 describe('when dragging and remove is called', function() {
 
@@ -71,7 +72,8 @@ describe('when dragging and remove is called', function() {
 
   it('cancel event is emitted', function() {
     let dragendCalled = false;
-    let drake = createDragula([this.div], { copy: true });
+    //let drake = createDragula([this.div], { copy: true });
+      let drake = createDragula([this.div], { copy: Options.always });
     this.div.appendChild(this.item);
     document.body.appendChild(this.div);
     raise(this.item, 'mousedown', { which: 1 });
